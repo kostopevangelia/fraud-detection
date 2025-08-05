@@ -27,23 +27,23 @@ import pickle
 with open("custom_model_features.pkl", "rb") as f:
     feature_columns = pickle.load(f)
 
-sample = {
-    'amount': 3500.0,
-    'currency': 'USD',
-    'paymentType': 'card',
-    'transactionType': 'PAYMENT',
-    'userId': 'USER123',
-    'bin': '400005',
-    'hour': 2,
-    'day_of_week': 6
-}
+# sample = {
+#     'amount': 3500.0,
+#     'currency': 'USD',
+#     'paymentType': 'card',
+#     'transactionType': 'PAYMENT',
+#     'userId': 'USER123',
+#     'bin': '400005',
+#     'hour': 2,
+#     'day_of_week': 6
+# }
 
-df_sample = pd.DataFrame([sample])
-df_sample_encoded = pd.get_dummies(df_sample)
-df_sample_encoded = df_sample_encoded.reindex(columns=feature_columns, fill_value=0)
+# df_sample = pd.DataFrame([sample])
+# df_sample_encoded = pd.get_dummies(df_sample)
+# df_sample_encoded = df_sample_encoded.reindex(columns=feature_columns, fill_value=0)
 
-fraud_score = model.predict_proba(df_sample_encoded)[:, 1][0]
-fraud_label = model.predict(df_sample_encoded)[0]
+# fraud_score = model.predict_proba(df_sample_encoded)[:, 1][0]
+# fraud_label = model.predict(df_sample_encoded)[0]
 
-print(f" Fraud Score: {fraud_score:.4f}")
-print(f" Fraud Detected? {'YES' if fraud_label == 1 else 'NO'}")
+# print(f" Fraud Score: {fraud_score:.4f}")
+# print(f" Fraud Detected? {'YES' if fraud_label == 1 else 'NO'}")
