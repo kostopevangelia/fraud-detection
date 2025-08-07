@@ -14,6 +14,10 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+
+import os
+model_path = os.path.join("src", "models")
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
@@ -22,11 +26,11 @@ import joblib
 import pickle
 
 # Load the trained model
-model = joblib.load("fraud_model_custom.pkl")
+model = joblib.load(model_path + "/fraud_model_custom.pkl")
 
 ### Load the feature columns used during training
 
-with open("custom_model_features.pkl", "rb") as f:
+with open(model_path + "/custom_model_features.pkl", "rb") as f:
     feature_columns = pickle.load(f)
     
 
