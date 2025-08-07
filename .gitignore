@@ -4,6 +4,7 @@ __pycache__/
 .env
 .venv
 *.log
-/src/resources/creditcard.csv
-/src/resources/custom_transactions.csv
-/src/models/.*
+#/src/resources/creditcard.csv
+#/src/resources/custom_transactions.csv
+/src/models/
+/src/resources/
