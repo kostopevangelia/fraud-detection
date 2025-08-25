@@ -2,7 +2,9 @@
 """
 Created on Sun May 11 15:13:34 2025
 
-@author: user
+@author: kostopevangelia
+
+Distances
 """
 
 from scipy.spatial import distance

@@ -2,7 +2,9 @@
 """
 Created on Thu Jul 31 16:28:10 2025
 
-@author: user
+@author: kostopevangelia
+
+Train Card Fraud Custom
 """
 
 import logging

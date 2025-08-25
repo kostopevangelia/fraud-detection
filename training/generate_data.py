@@ -2,7 +2,9 @@
 """
 Created on Thu Jul 31 15:36:57 2025
 
-@author: user
+@author: kostopevangelia
+
+Data Generation
 """
 
 import logging
@@ -92,6 +94,4 @@ df = pd.DataFrame(data)
 
 # Save
 df.to_csv("custom_transactions.csv", index=False)
-logger.info("Generated custom_transactions.csv with", len(df), "rows")
-
-
+logger.info("Generated custom_transactions.csv with %d rows", len(df))

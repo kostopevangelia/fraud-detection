@@ -3,17 +3,20 @@ FROM python:3.10-slim
 # Set working directory
 WORKDIR /app
 
-# Copy requirements if you have them
-COPY requirements.txt .
+# System deps (αν χρειαστούν για numpy/pandas/scikit)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the app code and model files
-COPY . .
+# Μόνο ό,τι χρειάζεται στο runtime
+COPY app/ app/
+COPY models/ models/
 
-# Expose port
+# Προαιρετικά: περιβάλλον για paths
+ENV MODEL_DIR=/app/models
+
 EXPOSE 8000
-
-# Run the FastAPI app with uvicorn
-CMD ["uvicorn", "src.fraud_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

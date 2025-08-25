@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul 31 16:43:22 2025
+
+@author: kostopevangelia
+
+Fraud Linear Regression
+"""
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.linear_model import LinearRegression

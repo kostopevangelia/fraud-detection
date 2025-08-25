@@ -2,7 +2,9 @@
 """
 Created on Thu Jul 31 16:01:03 2025
 
-@author: user
+@author: kostopevangelia
+
+Card Fraud Custom
 """
 
 import logging

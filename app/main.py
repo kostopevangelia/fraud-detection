@@ -2,7 +2,9 @@
 """
 Created on Thu Jul 31 16:43:22 2025
 
-@author: user
+@author: kostopevangelia
+
+Fraud Api
 """
 import logging
 
@@ -14,27 +16,22 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
 import os
+
 model_path = os.path.join("src", "models")
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 import pandas as pd
 
-import joblib
-import pickle
+import os, joblib, pickle
 
-# Load the trained model
-model = joblib.load(model_path + "/fraud_model_custom.pkl")
+MODEL_DIR = os.getenv("MODEL_DIR", os.path.join(os.path.dirname(__file__), "..", "models"))
 
-### Load the feature columns used during training
-
-with open(model_path + "/custom_model_features.pkl", "rb") as f:
+model = joblib.load(os.path.join(MODEL_DIR, "fraud_model_custom.pkl"))
+with open(os.path.join(MODEL_DIR, "custom_model_features.pkl"), "rb") as f:
     feature_columns = pickle.load(f)
-    
 
-# Create the api 
+# Create the api
 
 ### this object handles incoming HTTP requests
 app = FastAPI()
@@ -43,6 +40,7 @@ app = FastAPI()
 
 from pydantic import BaseModel, Field
 from typing import Literal
+
 
 class Transaction(BaseModel):
     amount: float = Field(..., gt=0)
@@ -55,13 +53,12 @@ class Transaction(BaseModel):
     day_of_week: int = Field(..., ge=0, le=6)
 
 
-
 ## We create the prediction endpoint
 
 @app.post("/predict-fraud")
 def predict(transaction: Transaction):
     logger.info("Received transaction: %s", transaction.dict())
-    
+
     # Step 1: Convert to DataFrame
     data = pd.DataFrame([transaction.dict()])
 
@@ -79,9 +76,3 @@ def predict(transaction: Transaction):
         "fraudScore": round(fraud_score, 4),
         "fraud": bool(fraud_label)
     }
-
-
-
-
-
-
