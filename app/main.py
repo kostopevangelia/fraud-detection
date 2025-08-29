@@ -4,7 +4,7 @@ Created on Thu Jul 31 16:43:22 2025
 
 @author: kostopevangelia
 
-Fraud Api
+Fraud Api - main.py
 """
 import logging
 
@@ -16,16 +16,15 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-import os
-
-model_path = os.path.join("src", "models")
-
 from fastapi import FastAPI
 import pandas as pd
 
+# app/main.py
 import os, joblib, pickle
 
-MODEL_DIR = os.getenv("MODEL_DIR", os.path.join(os.path.dirname(__file__), "..", "models"))
+# Default to ./models relative to this file
+DEFAULT_MODEL_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models"))
+MODEL_DIR = os.getenv("MODEL_DIR", DEFAULT_MODEL_DIR)
 
 model = joblib.load(os.path.join(MODEL_DIR, "fraud_model_custom.pkl"))
 with open(os.path.join(MODEL_DIR, "custom_model_features.pkl"), "rb") as f:

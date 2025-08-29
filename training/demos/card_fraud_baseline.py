@@ -4,7 +4,7 @@ Created on Thu Jul 31 13:11:48 2025
 
 @author: kostopevangelia
 
-Card Fraud
+Card Fraud Baseline
 """
 
 import logging
