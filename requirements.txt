@@ -1,12 +1,11 @@
 fastapi~=0.116.1
 uvicorn
 pandas~=2.3.1
-scikit-learn==1.3.2
-joblib~=1.5.1
-numpy==1.24.4
+numpy==1.26.4
 scipy~=1.15.3
+scikit-learn==1.5.2
+imbalanced-learn==0.14.0
+joblib~=1.5.1
 pydantic~=2.11.7
 matplotlib~=3.10.5
 kagglehub~=0.3.12
-imblearn~=0.0
-imbalanced-learn~=0.14.0
