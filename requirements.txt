@@ -8,3 +8,5 @@ scipy~=1.15.3
 pydantic~=2.11.7
 matplotlib~=3.10.5
 kagglehub~=0.3.12
+imblearn~=0.0
+imbalanced-learn~=0.14.0
